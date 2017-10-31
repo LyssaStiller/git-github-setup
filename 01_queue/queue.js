@@ -1,30 +1,23 @@
 function Queue(){
-    var returnVal = 0
-    var array = [];
-    var counter = 0;
-    this.enqueue = function(str){
-        array[returnVal] = str;
-        // counter++;
-        // array.push(str);
-        returnVal++;      
-    };
- 
-    this.dequeue = function(){
-        if (returnVal === 0) {
-            return undefined;
-        }
-        returnVal--;
-        var captured = array[0];        
-        array = array.slice(1);
-        return captured;
-        // array.pop(str);
- 
-    };
- 
-    this.size = function(){
-        
-       return returnVal;
- 
-    };
- 
+    this.queueSize = 0;
+    this.array = []; 
  }
+
+Queue.prototype.enqueue = function(str){
+    this.array[this.queueSize] = str;
+    this.queueSize++;      
+};
+
+Queue.prototype.dequeue = function(){
+    if (this.queueSize === 0) {
+        return undefined;
+    }
+    this.queueSize--;
+    var captured = this.array[0];        
+    this.array = this.array.slice(1);
+    return captured;
+};
+
+Queue.prototype.size = function(){
+   return this.queueSize;
+};
